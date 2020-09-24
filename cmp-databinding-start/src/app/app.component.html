@@ -1,0 +1,16 @@
+<div class="container">
+<!--I create a custom event like (server Created) and (blueprintCreated and i bind to the two function that i create in the app component
+we need to put in the cockpit component our custom event and assigne to some function-->
+  <app-cockpit 
+  (serverCreated)="onServerAdded($event)"
+  (bpCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+     <app-server-element 
+     *ngFor="let serverElement of serverElements"
+     [srvElement]="serverElement"></app-server-element>
+    </div>
+  </div>
+</div>
