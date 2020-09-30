@@ -1,8 +1,18 @@
 <div class="row">
-    <div class="col-md-5">
-        <app-recipe-list></app-recipe-list>
-    </div>
-    <div class="col-md-7">
-        <app-recipe-detail></app-recipe-detail>
-    </div>
+  <div class="col-md-5">
+    <app-recipe-list
+      (recipeWasSelected)="selectedRecipe = $event"
+    ></app-recipe-list
+    ><!--at the end connect the recipe item event throught the recipe list to the recipes component -->
+  </div>
+  <div class="col-md-7">
+    <app-recipe-detail
+      *ngIf="selectedRecipe; else infoText"
+      [recipe]="selectedRecipe"
+    ></app-recipe-detail
+    ><!--pass the info to the recipe detail component-->
+
+    <!--if not select any recipe-->
+    <ng-template #infoText><p>Pleas select a Recipe</p></ng-template>
+  </div>
 </div>
