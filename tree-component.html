@@ -1,0 +1,193 @@
+<div class="tree-header">
+  <div class="col path-colTitle">PATH</div>
+  <div class="col val-colTitle">VALUE 1</div>
+  <div class="col val-colTitle">VALUE 2</div>
+  <div class="col flag-colTilte">FLAG</div>
+</div>
+
+<!-- Reusable Flag Icon Template -->
+<ng-template #flagIconTemplate let-flag="flag">
+  <ng-container [ngSwitch]="flag">
+    <!-- flag 1: spunta verde 3D -->
+    <svg *ngSwitchCase="1" width="36" height="36" viewBox="0 0 36 36" aria-label="checkmark 3D"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="check3d-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#1b5e20" flood-opacity="0.45" />
+          <feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#aefaad" flood-opacity="0.7" />
+        </filter>
+      </defs>
+      <polyline points="8 18 16 26 28 10" fill="none" stroke="#39d353" stroke-width="4" stroke-linecap="round"
+        stroke-linejoin="round" filter="url(#check3d-glow)" />
+    </svg>
+
+    <!-- flag 2: X rossa 3D -->
+    <svg *ngSwitchCase="2" width="36" height="36" viewBox="0 0 36 36" aria-label="x 3D"
+      xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="x3d-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2.4" flood-color="#bb2020" flood-opacity="0.44" />
+          <feDropShadow dx="0" dy="0" stdDeviation="1" flood-color="#ffbcbc" flood-opacity="0.6" />
+        </filter>
+      </defs>
+      <line x1="10" y1="10" x2="26" y2="26" stroke="#d32f2f" stroke-width="4.2" stroke-linecap="round"
+        filter="url(#x3d-glow)" />
+      <line x1="26" y1="10" x2="10" y2="26" stroke="#d32f2f" stroke-width="4.2" stroke-linecap="round"
+        filter="url(#x3d-glow)" />
+    </svg>
+
+    <!-- flag 3: pallino pieno a sx, vuoto a dx 3D -->
+    <span *ngSwitchCase="3" style="display: flex; align-items: center; gap: 6px; justify-content: center;">
+      <!-- Pallino pieno -->
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-label="pallino pieno 3D"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="solid-3d-grad-shared" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#88f092" />
+            <stop offset="75%" stop-color="#2bb74f" />
+            <stop offset="100%" stop-color="#13661F" />
+          </radialGradient>
+          <radialGradient id="solid-highlight-shared" cx="33%" cy="28%" r="35%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.95" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+          </radialGradient>
+          <filter id="ball-shadow-shared" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#5a8b46" flood-opacity="0.4" />
+          </filter>
+        </defs>
+        <circle cx="18" cy="18" r="14" fill="url(#solid-3d-grad-shared)" filter="url(#ball-shadow-shared)" />
+        <ellipse cx="13" cy="11" rx="7" ry="3.4" fill="url(#solid-highlight-shared)" />
+        <circle cx="18" cy="18" r="14" fill="none" stroke="#295929" stroke-width="2.2" />
+      </svg>
+
+      <!-- Pallino vuoto -->
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-label="pallino vuoto 3D"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ring3d-shared" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e3ebee" />
+            <stop offset="60%" stop-color="#b2c7d8" />
+            <stop offset="100%" stop-color="#4f6b84" />
+          </linearGradient>
+          <radialGradient id="empty-shade-shared" cx="55%" cy="60%" r="70%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0" />
+            <stop offset="80%" stop-color="#d7e5eb" stop-opacity="0.23" />
+            <stop offset="100%" stop-color="#b0bfd6" stop-opacity="0.45" />
+          </radialGradient>
+          <filter id="emptyball-shadow-shared" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#B5C7DD" flood-opacity="0.33" />
+          </filter>
+        </defs>
+        <circle cx="18" cy="18" r="14" fill="url(#empty-shade-shared)" filter="url(#emptyball-shadow-shared)" />
+        <circle cx="18" cy="18" r="14.2" fill="none" stroke="url(#ring3d-shared)" stroke-width="2.5" />
+      </svg>
+    </span>
+
+    <!-- flag 4: pallino vuoto a sx, pieno a dx 3D -->
+    <span *ngSwitchCase="4" style="display: flex; align-items: center; gap: 6px; justify-content: center;">
+      <!-- Pallino vuoto -->
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-label="pallino vuoto 3D"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ring3d-shared-2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e3ebee" />
+            <stop offset="60%" stop-color="#b2c7d8" />
+            <stop offset="100%" stop-color="#4f6b84" />
+          </linearGradient>
+          <radialGradient id="empty-shade-shared-2" cx="55%" cy="60%" r="70%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0" />
+            <stop offset="80%" stop-color="#d7e5eb" stop-opacity="0.23" />
+            <stop offset="100%" stop-color="#b0bfd6" stop-opacity="0.45" />
+          </radialGradient>
+          <filter id="emptyball-shadow-shared-2" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#B5C7DD" flood-opacity="0.33" />
+          </filter>
+        </defs>
+        <circle cx="18" cy="18" r="14" fill="url(#empty-shade-shared-2)" filter="url(#emptyball-shadow-shared-2)" />
+        <circle cx="18" cy="18" r="14.2" fill="none" stroke="url(#ring3d-shared-2)" stroke-width="2.5" />
+      </svg>
+
+      <!-- Pallino pieno -->
+      <svg width="36" height="36" viewBox="0 0 36 36" aria-label="pallino pieno 3D"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="solid-3d-grad-shared-2" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#88f092" />
+            <stop offset="75%" stop-color="#2bb74f" />
+            <stop offset="100%" stop-color="#13661F" />
+          </radialGradient>
+          <radialGradient id="solid-highlight-shared-2" cx="33%" cy="28%" r="35%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.95" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+          </radialGradient>
+          <filter id="ball-shadow-shared-2" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#5a8b46" flood-opacity="0.4" />
+          </filter>
+        </defs>
+        <circle cx="18" cy="18" r="14" fill="url(#solid-3d-grad-shared-2)" filter="url(#ball-shadow-shared-2)" />
+        <ellipse cx="13" cy="11" rx="7" ry="3.4" fill="url(#solid-highlight-shared-2)" />
+        <circle cx="18" cy="18" r="14" fill="none" stroke="#295929" stroke-width="2.2" />
+      </svg>
+    </span>
+
+    <!-- fallback default: mostra valore testuale se valore di flag sconosciuto -->
+    <span *ngSwitchDefault>{{ flag }}</span>
+  </ng-container>
+</ng-template>
+
+<!-- Angular Material Tree -->
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+  <!-- Nodo foglia -->
+  <mat-tree-node *matTreeNodeDef="let node">
+    <div class="tree-row">
+      <div class="icon-placeholder"></div>
+      <div class="col path-col" [style.paddingLeft.px]="getLevel(node) * 20">{{ node.path }}</div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-grey': node.flag === 4
+       }">{{ node.value1 ?? '' }}</div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-grey': node.flag === 3
+       }">{{ node.value2 ?? '' }}</div>
+      <div class="col flag-col">
+        <ng-container *ngTemplateOutlet="flagIconTemplate; context: { flag: node.flag }"></ng-container>
+      </div>
+    </div>
+  </mat-tree-node>
+
+  <!-- Nodo con figli -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <div class="tree-row">
+      <div class="col path-col" [style.paddingLeft.px]="getLevel(node) * 20">
+        <button mat-icon-button matTreeNodeToggle style="width:24px; height:24px; margin-right:4px; padding:0;">
+          <svg *ngIf="treeControl.isExpanded(node)" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="#5590ca" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+          <svg *ngIf="!treeControl.isExpanded(node)" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="#5590ca" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 6 15 12 9 18" />
+          </svg>
+        </button>
+        {{ node.path }}
+      </div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-grey': node.flag === 4
+       }">{{ node.value1 ?? '' }}</div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-grey': node.flag === 3
+       }">{{ node.value2 ?? '' }}</div>
+      <div class="col flag-col">
+        <ng-container *ngTemplateOutlet="flagIconTemplate; context: { flag: node.flag }"></ng-container>
+      </div>
+    </div>
+    <div [class.tree-invisible]="!treeControl.isExpanded(node)">
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+
+</mat-tree>
