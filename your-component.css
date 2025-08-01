@@ -1,0 +1,65 @@
+.tree-header,
+.tree-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 16px; /* Reduced right padding to account for icon space */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  border: 1px solid red;
+}
+
+.tree-header {
+  font-weight: bold;
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #999;
+  /* Add padding-left to account for icon button space */
+  padding-left: 64px; /* 16px base + 48px for icon button (40px width + 8px margin) */
+}
+
+/* Colonne */
+.col {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+/* Path (più larga, con indentazione via inline style) */
+.path-col {
+  flex: 2 1 300px;
+  /* non mettere padding-left qui, è dinamico */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Value columns (larghezza fissa o flessibile) */
+.val-col {
+  flex: 1 1 100px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Flag colonna più stretta, centrata */
+.flag-col {
+  flex: 0 0 60px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Bottone toggle o disabilitato, con margine a destra */
+.icon-button {
+  width: 40px; /* imposta una larghezza fissa uguale per entrambi */
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+/* Nascondi i figli quando nodo non espanso */
+.tree-invisible {
+  display: none;
+}
+
+.icon-placeholder {
+  width: 40px; /* stessa larghezza bottone toggle */
+  margin-right: 8px;
+  flex-shrink: 0;
+}
