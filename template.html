@@ -1,0 +1,68 @@
+<!-- Intestazioni colonne -->
+<div class="tree-header">
+  <div class="col path-col">Path</div>
+  <div class="col val-col">Value 1</div>
+  <div class="col val-col">Value 2</div>
+  <div class="col flag-col">Flag</div>
+</div>
+
+<!-- Angular Material Tree -->
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+  <!-- Nodo foglia -->
+  <mat-tree-node *matTreeNodeDef="let node">
+    <div class="tree-row">
+      <!-- sostituisci il bottone disabilitato con un div vuoto con stessa larghezza -->
+      <div class="icon-placeholder"></div>
+      <div class="col path-col" [style.paddingLeft.px]="getLevel(node) * 20">{{ node.path }}</div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-purple': node.flag === 3,
+         'flag-yellow': node.flag === 4
+       }">{{ node.value1 ?? '-' }}</div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-purple': node.flag === 3,
+         'flag-yellow': node.flag === 4
+       }">{{ node.value2 ?? '-' }}</div>
+      <div class="col flag-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-purple': node.flag === 3,
+         'flag-yellow': node.flag === 4
+       }">{{ node.flag }}</div>
+    </div>
+  </mat-tree-node>
+
+  <!-- Nodo con figli -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <div class="tree-row">
+      <div class="col path-col" [style.paddingLeft.px]="getLevel(node) * 20">
+        <button mat-icon-button matTreeNodeToggle class="icon-button" style="width:24px; height:24px; margin-right:4px; padding:0;">
+          <span style="font-size: 24px; line-height: 1;">
+            {{ treeControl.isExpanded(node) ? '▼' : '▶' }}
+          </span>
+        </button>
+        {{ node.path }}
+      </div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-purple': node.flag === 3,
+         'flag-yellow': node.flag === 4
+       }">{{ node.value1 ?? '-' }}</div>
+      <div class="col val-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-purple': node.flag === 3,
+         'flag-yellow': node.flag === 4
+       }">{{ node.value2 ?? '-' }}</div>
+      <div class="col flag-col" [ngClass]="{
+         'flag-red': node.flag === 2,
+         'flag-purple': node.flag === 3,
+         'flag-yellow': node.flag === 4
+       }">{{ node.flag }}</div>
+    </div>
+    <div [class.tree-invisible]="!treeControl.isExpanded(node)">
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+
+</mat-tree>

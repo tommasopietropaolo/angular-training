@@ -1,0 +1,99 @@
+/* Remove the flag color classes from tree-row level and apply to individual columns */
+.tree-header,
+.tree-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 40px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  border: 1px solid black;
+}
+
+.tree-header {
+  font-weight: bold;
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #999;
+}
+
+/* Colonne */
+.col {
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+/* Path (più larga, con indentazione via inline style) */
+.path-col {
+  flex: 2 1 300px;
+  /* non mettere padding-left qui, è dinamico */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: auto;
+}
+
+/* Value columns (larghezza fissa o flessibile) */
+.val-col {
+  flex: 1 1 100px;
+  text-align: left;
+  white-space: nowrap;
+  height: auto;
+}
+
+/* Flag colonna più stretta, centrata */
+.flag-col {
+  flex: 0 0 60px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Bottone toggle o disabilitato, con margine a destra */
+.icon-button {
+  width: 40px; /* imposta una larghezza fissa uguale per entrambi */
+  height: 40px; /* add consistent height */
+  margin-right: 2px;
+  flex-shrink: 0;
+  min-width: 40px; /* ensure minimum width */
+}
+
+/* Nascondi i figli quando nodo non espanso */
+.tree-invisible {
+  display: none;
+}
+
+.icon-placeholder {
+  width: 40px; /* stessa larghezza bottone toggle */
+  height: 40px; /* same height as icon button */
+  margin-right: 8px;
+  flex-shrink: 0;
+  min-width: 40px; /* ensure minimum width */
+}
+
+/* Ensure consistent alignment for all tree rows */
+mat-tree-node,
+mat-nested-tree-node {
+  display: block;
+}
+
+/* Fix any potential margin/padding issues */
+mat-tree-node .tree-row,
+mat-nested-tree-node .tree-row {
+  margin: 0;
+  padding: 6px 40px;
+}
+
+/* Flag color classes - apply to individual columns */
+.col.flag-red {
+  background-color: #ffcccc;
+  color: #a70000;
+}
+
+.col.flag-purple {
+  background-color: #d1c4e9;
+  color: #4a148c;
+}
+
+.col.flag-yellow {
+  background-color: #fff9c4;
+  color: #827717;
+}
